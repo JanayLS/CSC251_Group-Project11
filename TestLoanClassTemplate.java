@@ -46,20 +46,40 @@ public class TestLoanClassTemplate {
   /** Extra payment first month only */
   public static void extraPayFirstMonth(Loan l, double extraPay) {
 	  System.out.printf("Extra payment only first month $%.2f%n", extraPay);
-	  double myLoanAmount =l.getLoanAmount();
+	  double myLoanAmount = l.getLoanAmount();
 	  double myMonthlyInterestRate = l.getAnnualInterestRate()/1200;
 	  double myMonthlyPayment = l.getMonthlyPayment();
-	  int month= 0;
+	  int month = 0;
 	  double interest = 0.0;
 	  double principal = 0.0;
 	  double totalInterest = 0.0;
 
 	  while (myLoanAmount >= myMonthlyPayment) {
-		  // to do A1 same as A2
-		  
+		// to do A1 same as A2
+
+		// Calculate this month's interest and add it to the total interest payed
+		interest = myLoanAmount * myMonthlyInterestRate;
+		totalInterest += interest;
+
+		// Calculate the principal payment for this month and subtract it from
+		// the amount left to be payed
+		principal = myMonthlyPayment - interest;
+		myLoanAmount -= principal;
+
+		// Subtract the extra payment from the loan amount without interest if the
+		// first month
+		if(month == 0) {
+			myLoanAmount -= extraPay;
+		}
+		
+		++month;
+
 	  }
 	  if (myLoanAmount < myMonthlyPayment) {
 		  // to do B1 same as B2
+		  interest = myLoanAmount * myMonthlyInterestRate;
+		  totalInterest += interest;
+		  ++month;
 	  }
 	  double interestSaved = l.getTotalInterest() - totalInterest;
 	  /*
