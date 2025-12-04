@@ -31,6 +31,7 @@ public class TestLoanClass {
     Loan loan =
       new Loan(annualInterestRate, numberOfYears, loanAmount);
 
+	System.out.println();
     // Display loan date, monthly payment, and total payment, and total interest
     System.out.printf("The loan was created on %s%n" +
       "The monthly payment is %.2f%nThe total payment is %.2f%nThe total interest is %.2f%n%n",
@@ -39,9 +40,16 @@ public class TestLoanClass {
       loan.getTotalPayment(),
       loan.getTotalInterest());
     
-    extraPayFirstMonth(loan, extraPaymentAmount);
-    System.out.println();
-    extraPayEveryMonth(loan, extraPaymentAmount);
+	// Show different interest amounts with different extra payment options
+	if(extraPaymentAmount > 0) {
+		extraPayFirstMonth(loan, extraPaymentAmount);
+		System.out.println();
+		extraPayEveryMonth(loan, extraPaymentAmount);
+	}
+	// Tell the user this if they aren't paying extra per month
+	else {
+		System.out.println("Total interest must be payed.");
+	}
   }
   
   /** Extra payment first month only */
