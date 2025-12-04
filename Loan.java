@@ -1,5 +1,5 @@
 package groupproject2025;
-// LiveExample 10.2
+
 public class Loan {
 	  private double annualInterestRate;
 	  private int numberOfYears;
@@ -66,10 +66,8 @@ public class Loan {
 	    return totalPayment;    
 	  }
 	  
-	  // 11/9
 	  /** Find total interest */
 	  public double getTotalInterest() {
-	    // to do, or is done now
 		// totalInterest is the difference of total payment minus loan amount
 		double totalPayment = this.getTotalPayment();
 		double totalInterest = totalPayment - this.loanAmount;
